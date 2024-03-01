@@ -1,0 +1,10 @@
+/* src/global.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E0F7FA;
+    color: #fff; /* Light text color */
+    font-family: sans-serif;
+  }
+  

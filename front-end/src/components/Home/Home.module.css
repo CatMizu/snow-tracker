@@ -1,0 +1,64 @@
+/* Home.module.css */
+.snowfall-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+li:hover {
+  transform: translateY(-3px);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+.snowfall-data {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.logout {
+  display: block;
+  width: 100px;
+  margin: 0 auto 20px auto;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: #ffffff;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.logout:hover {
+  background-color: #c0392b;
+}
