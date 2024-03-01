@@ -12,28 +12,30 @@ function Home() {
   useEffect(() => {
     const fetchSnowfallData = async () => {
       try {
-        const token = await auth.getSession(); // 获取认证会话信息
-        const accessToken = token.access.token; // 假设access token存储在access.token中
+        const token = await auth.getSession();
+        const accessToken = token.access.token;
 
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/snowfall`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`, // 添加Authorization头
+            Authorization: `Bearer ${accessToken}`,
           },
         });
 
         setSnowfallData(response.data.snowfallData);
       } catch (error) {
         console.error("Failed to fetch snowfall data", error);
-        // 如果请求因认证失败而出错，可以重定向到登录页面
         if (error.response && error.response.status === 401) {
-          auth.logout(); // 清除认证状态
-          navigate("/login"); // 重定向到登录页
+          auth.logout();
+          navigate("/login");
         }
       }
     };
 
     fetchSnowfallData();
-  }, [auth, navigate]); // 添加auth和navigate作为useEffect的依赖项
+  }, [auth, navigate]);
+
+  // 计算最大降雪量以设置进度条的相对长度
+  const maxSnowfall = Math.max(...snowfallData.map(data => data.totalSnowfall), 0);
 
   return (
     <div className={styles["snowfall-container"]}>
@@ -48,13 +50,23 @@ function Home() {
         Logout
       </button>
       {snowfallData.length > 0 ? (
+        // React组件的部分更新
         <ul>
           {snowfallData.map(({ skiResort, totalSnowfall }) => (
             <li key={skiResort}>
-              {skiResort}: {totalSnowfall} mm
+              <div className={styles["snowfall-info"]}>
+                {skiResort}: <span className={styles["snowfall-data"]}>{totalSnowfall} mm</span>
+              </div>
+              <div className={styles["progress-bar-container"]}>
+                <div
+                  className={styles["progress-bar"]}
+                  style={{ width: `${(totalSnowfall / maxSnowfall) * 100}%` }}
+                ></div>
+              </div>
             </li>
           ))}
         </ul>
+
       ) : (
         <p>No snowfall data available.</p>
       )}
