@@ -21,7 +21,7 @@ async function fetchWeatherData(lat, lon) {
     const url = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`;
     try {
       const response = await axios.get(url);
-      return response.data; // 返回API响应的完整数据
+      return response.data;
     } catch (error) {
       console.error('获取天气数据时出错:', error);
       return null;
@@ -31,10 +31,9 @@ async function fetchWeatherData(lat, lon) {
 
 // 保存天气数据到数据库的函数
 async function saveWeatherData(data, skiResortName) {
-    const dailyData = data.daily[0]; // 获取今天的数据
-
+    const dailyData = data.daily[0];
     const weatherData = new Weather({
-      date: new Date(dailyData.dt * 1000), // 转换Unix时间戳到JS日期
+      date: new Date(dailyData.dt * 1000),
       skiResort: skiResortName,
       temp: dailyData.temp,
       feels_like: dailyData.feels_like,

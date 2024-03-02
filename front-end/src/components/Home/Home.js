@@ -39,7 +39,7 @@ function Home() {
 
   return (
     <div className={styles["snowfall-container"]}>
-      <h1>Snowfall Data</h1>
+      <h1>Snowfall Data in Last Three Days</h1>
       <button
         className={styles.logout}
         onClick={() => {
