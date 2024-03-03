@@ -10,7 +10,32 @@
 h1 {
   text-align: center;
   color: #333;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 30px;
+}
+
+.day-selector {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.logout {
+  padding: 5px 15px;
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #c0392b;
 }
 
 ul {
@@ -19,77 +44,34 @@ ul {
   margin: 0;
 }
 
-li {
-  display: flex;
-  flex-direction: column; /* 改为垂直布局 */
-  align-items: flex-start; /* 左对齐 */
-  justify-content: space-between;
-  padding: 20px;
-  margin-bottom: 10px;
+.list-item {
   background-color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
 .snowfall-info {
-  margin-bottom: 10px; /* 为雪场信息和进度条之间添加间距 */
-  font-size: 16px; /* 调整字体大小以改善可读性 */
-}
-
-li:last-child {
-  margin-bottom: 0;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .snowfall-data {
   font-weight: bold;
-  color: #2c3e50;
+  color: #3498db;
 }
 
-.small-snowfall .snowfall-data {
-  font-size: 14px;
-  color: #a3d0f8;
-}
-
-.medium-snowfall .snowfall-data {
-  font-size: 18px;
-  color: #7bb8f8;
-}
-
-.large-snowfall .snowfall-data {
-  font-size: 22px;
-  color: #4186f0;
-}
-
-.logout {
-  display: block;
-  width: 100px;
-  margin: 0 auto 20px auto;
-  padding: 10px 20px;
-  background-color: #e74c3c;
-  color: #ffffff;
-  text-align: center;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.logout:hover {
-  background-color: #c0392b;
-}
-
-/* 添加到 Home.module.css */
 .progress-bar-container {
   width: 100%;
   background-color: #e0e0e0;
   border-radius: 5px;
   overflow: hidden;
-  height: 10px; /* 明确设置高度 */
+  height: 10px;
 }
 
 .progress-bar {
-  height: 100%; /* 使进度条填满容器高度 */
+  height: 100%;
   background-color: #3498db;
   width: 0%;
   border-radius: 5px;

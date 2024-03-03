@@ -4,7 +4,7 @@ const { snowfallService } = require('../services');
 
 
 const getSnowfall = catchAsync(async (req, res) => {
-  const snowfallData = await snowfallService.getAccumulatedSnowfall();
+  const snowfallData = await snowfallService.getAccumulatedSnowfallbyDays(req.params.days);
   res.send({ snowfallData });
 });
 
