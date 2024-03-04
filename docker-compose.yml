@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  back-end:
+    build: 
+      context: ./back-end
+      dockerfile: Dockerfile
+    image: back-end
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+    ports:
+      - '3000:3000'
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      - ./back-end:/usr/src/back-end
+    networks:
+      - node-network
+
+  mongodb:
+    image: mongo:4.2.1-bionic
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - node-network
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  frontend:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./front-end:/app
+    networks:
+      - node-network
+
+  data-collector:
+    build:
+      context: ./data-collector
+      dockerfile: Dockerfile
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+      - OPENWEATHER_API_KEY=5154da2bc62e8f8a0c4efdea2cdaa547
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - node-network
+
+volumes:
+  dbdata:
+
+networks:
+  node-network:
+    driver: bridge
